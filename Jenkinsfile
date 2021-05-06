@@ -8,6 +8,7 @@
             steps {
                 echo 'Installing dependencies..'
 		        sh 'npm install'
+		    	sh 'apt install git -y'
 		        sh 'install git'
             }
 	  }
