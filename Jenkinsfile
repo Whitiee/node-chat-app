@@ -21,15 +21,12 @@
 	  
 	stage('Test') {
             steps {
-		    success
-		    {
-                	echo 'Testing..'
+		    script{
+			    if (currentBuild.result!='SUCCESS')
+			    		error ("Skipping test - build failed")
+		    }
+                echo 'Testing..'
 		        sh 'npm run test'
-		    }
-		    failure
-		    {
-			echo 'Skipping test - build failed'
-		    }
             }
         } 
     }
