@@ -9,11 +9,18 @@ pipeline {
             steps {
                 echo 'Build..'
 		        sh 'npm install'
+		    script { 
+			    currentBuild.result='UNSTABLE'
+		    }
             }
 	  }
         stage('Test') {
             steps {
                 echo 'Testing..'
+		    script { 
+			    if (currentBuild.result == 'UNSTABLE')
+			    	error("Break")
+		    }
 		        sh 'npm run test'
             }
         } 
