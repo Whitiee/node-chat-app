@@ -1,31 +1,35 @@
-pipeline {
+	pipeline {
 	agent any
 	tools {
 		nodejs "node"
 	}
-
     stages {
-	     stage('Build') {
+	stage('Install dependencies') {
             steps {
-                echo 'Build..'
+                echo 'Installing dependencies..'
 		        sh 'npm install'
-		    script { 
-			    currentBuild.result='UNSTABLE'
-		    }
+		        sh 'install git'
             }
 	  }
+	  
+	stage('Build') {
+            steps {
+                echo 'Building..'
+                	sh 'git clone https://github.com/Whitiee/node-chat-app.git'
+		        sh 'npm run build'
+            }
+        }   
+	  
         stage('Test') {
+          when {
+            expression { currentBuild.result == 'SUCCESS'}
+          }
             steps {
                 echo 'Testing..'
-		    script { 
-			    if (currentBuild.result == 'UNSTABLE')
-			    	error("Break")
-		    }
 		        sh 'npm run test'
             }
         } 
     }
-    
     post {
         always {
             echo 'I have finished'
