@@ -13,14 +13,9 @@
 	  }
 	  
 	stage('Build') {
-            try {
-                sh 'git clone --no-checkout https://github.com/Whitiee/node-chat-app.git'
-	    }
-	    catch (exc) {
-		sh 'git init && git pull'
-	    } 
 	  steps {
                 echo 'Building..'
+		  	git 'https://github.com/Whitiee/node-chat-app.git'
 		        sh 'npm build'
             }
         }   
