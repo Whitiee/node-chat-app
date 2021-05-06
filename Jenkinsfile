@@ -19,13 +19,17 @@
             }
         }   
 	  
-        stage('Test') {
-          when {
-            expression { currentBuild.result == 'SUCCESS'}
-          }
+	stage('Test') {
             steps {
-                echo 'Testing..'
+		    success
+		    {
+                	echo 'Testing..'
 		        sh 'npm run test'
+		    }
+		    failure
+		    {
+			echo 'Skipping test - build failed'
+		    }
             }
         } 
     }
