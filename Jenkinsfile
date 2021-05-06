@@ -15,7 +15,12 @@
 	stage('Build') {
             steps {
                 echo 'Building..'
-                	sh 'git clone --no-checkout https://github.com/Whitiee/node-chat-app.git tmp && mv tmp/.git . && rmdir tmp && git checkout master'
+		    try {
+                	sh 'git clone --no-checkout https://github.com/Whitiee/node-chat-app.git'
+		    }
+		    catch (exc) {
+			sh 'git init && git pull'
+		    }
 		        sh 'npm build'
             }
         }   
