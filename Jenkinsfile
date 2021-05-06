@@ -16,7 +16,7 @@
             steps {
                 echo 'Building..'
                 	sh 'git clone https://github.com/Whitiee/node-chat-app.git'
-		        sh 'npm run build'
+		        sh 'npm build'
             }
         }   
 	  
