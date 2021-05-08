@@ -16,6 +16,7 @@
                 echo 'Building..'
 		  	git 'https://github.com/Whitiee/node-chat-app.git'
 		        sh 'npm install'
+		  script {currentBuild.result='UNSTABLE'}
             }
         }   
 	  
