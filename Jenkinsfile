@@ -33,7 +33,6 @@
                 echo 'Deploying..'
 		        sh 'docker build -t deploy -f Dockerfile-deploy .'
             }
-        } 
     }
     
     post {
