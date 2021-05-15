@@ -33,7 +33,6 @@
         stage('Deploy') {
 	    steps {
                 echo 'Deploying..'
-		    sh 'service docker restart'
 		        sh 'docker build -t deploy -f Dockerfile-deploy .'
             }
 	}
