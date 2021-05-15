@@ -28,6 +28,12 @@
 		        sh 'npm run test'
             }
         } 
+        
+        stage('Deploy') {
+                echo 'Deploying..'
+		        sh 'docker build -t deploy -f Dockerfile-deploy .'
+            }
+        } 
     }
     
     post {
