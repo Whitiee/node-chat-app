@@ -8,6 +8,7 @@
             steps {
                 echo 'Installing dependencies..'
 		    	sh 'apt install git -y'
+		        sh 'apt install docker -y'
             }
 	  }
 	  
