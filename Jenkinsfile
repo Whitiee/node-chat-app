@@ -31,6 +31,9 @@
         } 
         
         stage('Deploy') {
+		when {
+		expression {currentBuild.result == null || currentBuild.result == 'SUCCESS'}
+	  }
 	    steps {
                 echo 'Deploying..'
 		        sh 'docker build -t deploy -f Dockerfile-deploy .'
